@@ -5,11 +5,12 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
-const { campgroundSchema } = require('./schemas')
+const { campgroundSchema, reviewSchema } = require('./schemas')
 const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
 const methodOverride = require('method-override')
 const Campground = require('./models/campground')
+const Review = require('./models/review')
 
 // MongoDB接続
 mongoose.connect('mongodb://db:27017/yelp-camp', 
@@ -40,6 +41,7 @@ app.use(express.urlencoded({extended: true}))
 // クエリパラメータ（?_method=[メソッド名]）で渡すことで（GET, POST）以外のリクエストが投げれるようになる
 app.use(methodOverride('_method'))
 
+// middlewareのバリデーション（キャンプ場）
 const validateCampground = (req, res, next) => {
     const {error} = campgroundSchema.validate(req.body)
     if (error) {
@@ -49,6 +51,17 @@ const validateCampground = (req, res, next) => {
         next()
     }
 }
+// middlewareのバリデーション（レビュー）
+const validateReview = (req, res, next) => {
+    const {error} = reviewSchema.validate(req.body)
+    if (error) {
+        const msg = error.details.map(detail => detail.message).join(', ')
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
+}
+
 
 app.get('/', (req, res) => {
     // res.send('YelpCamp!!!!')
@@ -85,7 +98,9 @@ app.post('/campgrounds', validateCampground, catchAsync(async (req, res) => {
 // キャンプ場詳細
 // '/campgrounds/:id' のように、パラメータを含むルーティングは一番下に定義する
 app.get('/campgrounds/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
+    // キャンプ場の詳細情報を取得（populateでレビュー情報も取得）
+    const campground = await Campground.findById(req.params.id).populate('reviews')
+// console.log(campground)
     res.render('campgrounds/show', {campground})
 }))
 
@@ -108,6 +123,24 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     res.redirect(`/campgrounds`)
 }))
 
+// レビューの登録（POST）
+app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id)
+    const review = new Review(req.body.review)
+    campground.reviews.push(review)
+    await review.save()
+    await campground.save()
+    res.redirect(`/campgrounds/${campground._id}`)
+    // res.send('レビューが投稿されました！')
+}))
+
+// レビューの削除（DELETE）
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params
+    await Campground.findByIdAndUpdate(id, {$pull : {reviews: reviewId}})
+    await Review.findByIdAndDelete(reviewId)
+    res.redirect(`/campgrounds/${id}`)
+}))
 
 
 app.all('*', (req, res, next) => {
