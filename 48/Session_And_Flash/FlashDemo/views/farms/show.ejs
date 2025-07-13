@@ -1,0 +1,17 @@
+<!-- FlashDemo/views/farms/show.ejs -->
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= farm.name %></title>
+ </head>
+ <body>
+    <h1><%= farm.name %></h1>
+    <ul>
+        <li>市： <%= farm.city %></li>
+        <li>メールアドレス： <%= farm.email %></li>
+    </ul>
+    <a href="/farms">農場一覧へ</a>
+ </body>
+ </html>
