@@ -1,0 +1,33 @@
+<!-- YelpCamp-ja/views/users/register.ejs -->
+
+<% layout('layouts/boilerplate.ejs') %>
+<h1>ユーザー登録</h1>
+
+<!-- class="validated-form" は、どのフォームにカスタムのバリデーションを適用するかをJavaScriptに教えるための「目印」です。 -->
+<!-- novalidate 属性は、ブラウザ標準のバリデーション機能とエラーメッセージの表示を無効にするために使用される -->
+<form action="/register" method="post" class="validated-form" novalidate>
+    <div class="mb-3">
+        <label class="form-label" for="username">ユーザー名</label>
+        <input class="form-control" type="text" name="username" id="username" required>
+        <div class="valid-feedback">
+            OK!
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="email">メールアドレス</label>
+        <input class="form-control" type="email" name="email" id="email" required>
+        <div class="valid-feedback">
+            OK!
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="password">パスワード</label>
+        <input class="form-control" type="password" name="password" id="password" required>
+        <div class="valid-feedback">
+            OK!
+        </div>
+    </div>
+    <button class="btn btn-success">登録する</button>
+</form>

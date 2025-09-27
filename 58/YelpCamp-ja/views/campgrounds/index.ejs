@@ -1,0 +1,47 @@
+<!-- YelpCamp-ja/views/campgrounds/index.ejs -->
+
+<% layout('layouts/boilerplate.ejs') %>
+<%# クラスターマップ用 %>
+<!--
+<div id="map" style="width: 100%; height: 500px;"></div>
+-->
+<div id="cluster-map"></div>
+
+<h1>キャンプ場一覧</h1>
+<div>
+    <a href="/campgrounds/new">新規登録</a>
+</div>
+<% for (campground of campgrounds) { %>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <%# コメントアウト
+                <img class="img-fluid" src="< %= campground.image % >" alt="">
+                %>
+                <% if (campground.images && campground.images.length) { %>
+                    <%# 画像がある場合 %>
+                    <img class="img-fluid" src="<%= campground.images[0].url %>" alt="">
+                <% } else { %>
+                    <%# 画像がない場合、デフォルトを指定 %>
+                    <img class="img-fluid" src="https://res.cloudinary.com/dwwqzevrb/image/upload/v1754776624/YelpCamp/qiehjhssde94z72h7wiu.jpg" alt="">
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= campground.title %></h5>
+                    <p class="card-text"><%= campground.description %></p>
+                    <p class="card-text">
+                        <small class="text-muted"><%= campground.location %></small>
+                    </p>
+                    <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>"><%= campground.title %>の詳細</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<script>
+    const mapToken = '<%= process.env.MAPBOX_TOKEN %>'
+    const campgrounds = <%- JSON.stringify(campgrounds) %>
+</script>
+<script src="/javascripts/clusterMap.js"></script>

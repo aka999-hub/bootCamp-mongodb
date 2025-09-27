@@ -1,0 +1,14 @@
+<!-- YelpCamp-ja/views/error.ejs -->
+
+<% layout('layouts/boilerplate.ejs') %>
+<div class="row">
+    <div class="offset-3 col-6">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading"><%= err.message %></h4>
+            <!-- 本番モードではスタックトレースを表示しない -->
+            <% if (process.env.NODE_ENV !== 'production') { %>
+            <p><%= err.stack %></p>
+            <% } %>
+         </div>
+    </div>
+</div>

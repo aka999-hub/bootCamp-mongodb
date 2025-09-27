@@ -34,6 +34,7 @@ logs/
 *.swo
 
 # Environment files
+**/.env
 .env
 .env.*
 !.env.example
@@ -43,6 +44,62 @@ logs/
 # *.tar.gz
 
 # other file
+.devcontainer/mongo
+.devcontainer/mongo/*
+.devcontainer/devcontainer.json.0506
+.devcontainer/docker-compose.yml.0506
+.devcontainer/docker-compose.yml.20250514
+.devcontainer/Dockerfile.0506
+.devcontainer/Dockerfile.0517
+37/MongooseBasics.org
+37/MongooseBasics.org/*
+38/Mongoose_With_Express_CODE.org
+38/Mongoose_With_Express_CODE.org/*
+39/YelpCamp-ja.org
+39/YelpCamp-ja.org/*
+40/Middleware_Intro.org
+40/Middleware_Intro.org/*
+41/YelpCamp-ja.org
+41/YelpCamp-ja.org/*
+42/YelpCamp-ja.org
+42/YelpCamp-ja.org/*
+43/YelpCamp-ja.org
+43/YelpCamp-ja.org/*
+44/YelpCamp-ja.org
+44/YelpCamp-ja.org/*
+45/YelpCamp-ja.org
+45/YelpCamp-ja.org/*
+46/YelpCamp-ja.org
+46/YelpCamp-ja.org/*
+47/YelpCamp-ja.org
+47/YelpCamp-ja.org/*
+48/YelpCamp-ja.org
+48/YelpCamp-ja.org/*
+49/YelpCamp-ja.org
+49/YelpCamp-ja.org/*
+50/YelpCamp-ja.org
+50/YelpCamp-ja.org/*
+51/YelpCamp-ja.org
+51/YelpCamp-ja.org/*
+52/YelpCamp-ja.org
+52/YelpCamp-ja.org/*
+53/YelpCamp-ja.org
+53/YelpCamp-ja.org/*
+54/YelpCamp-ja.org
+54/YelpCamp-ja.org/*
+55/YelpCamp-ja.org
+55/YelpCamp-ja.org/*
+56/YelpCamp-ja.org
+56/YelpCamp-ja.org/*
+57/YelpCamp-ja.org
+57/YelpCamp-ja.org/*
+58/YelpCamp-ja.org
+58/YelpCamp-ja.org/*
+59/YelpCamp-ja.org
+59/YelpCamp-ja.org/*
+
+del
+del/*
 README.ignore.md
 
 

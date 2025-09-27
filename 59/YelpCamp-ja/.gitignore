@@ -1,0 +1,63 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE and editor specific files
+.idea/
+.vscode/
+*.iml
+*.project
+*.classpath
+*.settings/
+
+# Build output
+build/
+dist/
+out/
+target/
+
+# Dependency directories
+node_modules/
+vendor/
+jspm_packages/
+bower_components/
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*~
+*.tmp
+*.swp
+*.swo
+
+# Environment files
+**/.env
+.env
+.env.*
+!.env.example
+
+# Archives (unless explicitly tracked)
+# *.zip
+# *.tar.gz
+
+# other file
+.devcontainer/mongo
+.devcontainer/mongo/*
+.devcontainer/devcontainer.json.0506
+.devcontainer/docker-compose.yml.0506
+.devcontainer/docker-compose.yml.20250514
+.devcontainer/Dockerfile.0506
+.devcontainer/Dockerfile.0517
+
+del
+del/*
+README.ignore.md
+
+
+*/del_uploads
+*/del_uploads/*
+
+

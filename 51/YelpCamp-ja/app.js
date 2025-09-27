@@ -84,8 +84,12 @@ app.use(flash())
 
 // フラッシュのミドルウェア設定
 app.use((req, res, next) => {
+
+    console.log(req.session);
+
     // res.locals：リクエストのライフサイクル内で使える変数を保存
     // グローバルにアクセスできるのでテンプレートで利用可能
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next()
