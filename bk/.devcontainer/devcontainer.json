@@ -15,14 +15,7 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"mongodb.mongodb-vscode",
-				"google.geminicodeassist",
-				"rooveterinaryinc.roo-cline",
-				"sourcegraph.cody-ai",
-				"dwtexe.cursor-stats",
-				"maattdd.gitless",
-				"donjayamanne.githistory",
-				"rvest.vs-code-prettier-eslint"
+				"mongodb.mongodb-vscode"
 			]
 		}
 	}
